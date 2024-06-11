@@ -76,5 +76,6 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx:23.4.0")
 
     implementation ("androidx.fragment:fragment:1.3.0")
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
 }
