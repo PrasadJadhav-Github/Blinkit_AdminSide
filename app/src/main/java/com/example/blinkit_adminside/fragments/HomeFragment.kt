@@ -7,13 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.blinkit_adminside.R
+import com.example.blinkit_adminside.adapter.AdapterProduct
 import com.example.blinkit_adminside.adapter.CategoriesAdapter
 import com.example.blinkit_adminside.databinding.FragmentHomeBinding
 import com.example.blinkit_adminside.models.Category
 import com.example.blinkit_adminside.object_class.Constant
+import com.example.blinkit_adminside.viewmodel.AdminViewModel
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
+    val viewMode :AdminViewModel by viewModels()
 private  lateinit var  binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -23,7 +29,20 @@ private  lateinit var  binding: FragmentHomeBinding
         binding= FragmentHomeBinding.inflate(inflater,container,false)
         setStatusBarColor()
         setCategories()
+        getAllTheProducts()
         return binding.root
+    }
+
+    private fun getAllTheProducts() {
+        lifecycleScope.launch {
+            viewMode.fetchAllTheProducts().collect{
+            val  adapterProduct = AdapterProduct()
+                binding.recyclerviewProducts.adapter=adapterProduct
+                adapterProduct.differ.submitList(it)
+            }
+
+        }
+
     }
 
     private fun setCategories() {
