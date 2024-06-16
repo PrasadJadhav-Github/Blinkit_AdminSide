@@ -12,7 +12,8 @@ import com.example.blinkit_adminside.models.Products
 
 
 
-class AdapterProduct :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>() {
+class AdapterProduct(
+    val onEditButtonClick: (Products) -> Unit) :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>() {
     class ProductViewHolder(val binding: ItemViewProductBinding) : ViewHolder(binding.root)
 
     val diffutil =object  :DiffUtil.ItemCallback<Products>(){
@@ -49,6 +50,9 @@ class AdapterProduct :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>() {
             val quantity = product.productQuantity.toString() + product.productUnit
             textviewProductQuantity.text = quantity
             textviewProductPrice.text = "₹" + product.productPrice
+        }
+        holder.itemView.setOnClickListener {
+            onEditButtonClick(product)
         }
     }
 
