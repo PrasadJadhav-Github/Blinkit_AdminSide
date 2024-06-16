@@ -63,25 +63,27 @@ class AdminViewModel: ViewModel() {
             }
     }
 
-     fun fetchAllTheProducts(): Flow<List<Products>> = callbackFlow {
-         val db= FirebaseDatabase.getInstance().getReference("Admins").child("AllProducts")
-         val eventListener = object : ValueEventListener {
-             override fun onDataChange(snapshot: DataSnapshot) {
+    fun fetchAllTheProducts(category: String?): Flow<List<Products>> = callbackFlow {
+        val db= FirebaseDatabase.getInstance().getReference("Admins").child("AllProducts")
+        val eventListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
                 val products = ArrayList<Products>()
-                    for (product in snapshot.children){
-                        val prod =product.getValue(Products::class.java)
+                for (product in snapshot.children){
+                    val prod =product.getValue(Products::class.java)
+                    if (category=="All" || prod?.productCategory ==category){
                         products.add(prod!!)
                     }
-                 trySend(products)
-             }
+                }
+                trySend(products)
+            }
 
-             override fun onCancelled(error: DatabaseError) {
-                 TODO("Not yet implemented")
-             }
-         }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
 
-         db.addValueEventListener(eventListener)
-         awaitClose { db.removeEventListener(eventListener)
-         }
-     }
+        db.addValueEventListener(eventListener)
+        awaitClose { db.removeEventListener(eventListener)
+        }
+    }
 }

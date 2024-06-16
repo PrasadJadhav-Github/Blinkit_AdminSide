@@ -37,18 +37,19 @@ class AdapterProduct :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>() {
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = differ.currentList[position]
         holder.binding.apply {
-            val imageList=ArrayList<SlideModel>()
-            val  productImages=product.productImagesUris
-            for(i in 0 until productImages?.size!!){
-                imageList.add(SlideModel(product.productImagesUris!![i].toString()))
+            val imageList = ArrayList<SlideModel>()
+            val productImages = product.productImagesUris
+            if (productImages != null) {
+                for (i in productImages.indices) {
+                    imageList.add(SlideModel(productImages[i].toString()))
+                }
+                ivImageSlider.setImageList(imageList)
             }
-            ivImageSlider.setImageList(imageList)
-            textviewProductTitle.text=product.productTitle
-            val quantity =product.productQuantity.toString()+product.productUnit
-            textviewProductQuantity.text=quantity
-            textviewProductPrice.text="₹"+product.productPrice
+            textviewProductTitle.text = product.productTitle
+            val quantity = product.productQuantity.toString() + product.productUnit
+            textviewProductQuantity.text = quantity
+            textviewProductPrice.text = "₹" + product.productPrice
         }
-
     }
-}
 
+}

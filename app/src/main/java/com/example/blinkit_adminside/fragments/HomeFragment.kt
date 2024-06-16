@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     val viewMode :AdminViewModel by viewModels()
-private  lateinit var  binding: FragmentHomeBinding
+    private  lateinit var  binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,30 +29,40 @@ private  lateinit var  binding: FragmentHomeBinding
         binding= FragmentHomeBinding.inflate(inflater,container,false)
         setStatusBarColor()
         setCategories()
-        getAllTheProducts()
+        getAllTheProducts("All")
         return binding.root
     }
 
-    private fun getAllTheProducts() {
+    private fun getAllTheProducts(category: String?) {
         lifecycleScope.launch {
-            viewMode.fetchAllTheProducts().collect{
-            val  adapterProduct = AdapterProduct()
+            viewMode.fetchAllTheProducts(category).collect{
+                if (it.isEmpty()){
+                    binding.recyclerviewProducts.visibility=View.GONE
+                    binding.tvText.visibility =View.VISIBLE
+                }
+                else{
+                    binding.recyclerviewProducts.visibility=View.VISIBLE
+                    binding.tvText.visibility =View.GONE
+                }
+                val  adapterProduct = AdapterProduct()
                 binding.recyclerviewProducts.adapter=adapterProduct
                 adapterProduct.differ.submitList(it)
             }
-
         }
-
     }
 
+
     private fun setCategories() {
-
         val  categoryList = ArrayList<Category>()
-
         for (i in 0 until  Constant.allProductsCategoryIcon.size){
             categoryList.add(Category(Constant.allProductsCategory[i],Constant.allProductsCategoryIcon[i]))
         }
-        binding.recyclerviewCategories.adapter=CategoriesAdapter(categoryList)
+        binding.recyclerviewCategories.adapter=CategoriesAdapter(categoryList,::onCategoryClick)
+    }
+
+
+    private  fun onCategoryClick(category: Category){
+        getAllTheProducts(category.category)
     }
 
     private fun setStatusBarColor() {

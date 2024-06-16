@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.blinkit_adminside.databinding.ItemViewProductCategoriesBinding
 import com.example.blinkit_adminside.models.Category
 
-class CategoriesAdapter (
-    private  val categoryArrayList :ArrayList<Category>,
+class CategoriesAdapter(
+    private val categoryArrayList: ArrayList<Category>,
+    val onCategoryClick: (Category) -> Unit,
 ): RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>(){
     class CategoriesViewHolder (val binding : ItemViewProductCategoriesBinding):RecyclerView.ViewHolder(binding.root)
 
@@ -26,8 +27,8 @@ class CategoriesAdapter (
             textviewCategoryTitle.text=category.category
 
         }
+        holder.itemView.setOnClickListener {
+            onCategoryClick(category)
+        }
     }
-
 }
-
-

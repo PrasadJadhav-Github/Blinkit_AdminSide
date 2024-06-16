@@ -77,5 +77,6 @@ dependencies {
 
     implementation ("androidx.fragment:fragment:1.3.0")
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.0")
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
 
 }

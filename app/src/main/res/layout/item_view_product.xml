@@ -4,97 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="2.60dp">
+    android:layout_margin="2.6dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewProduct"
         android:layout_width="match_parent"
-        android:layout_height="286.00dp"
+        android:layout_height="286dp"
         android:background="@drawable/bg_stroke"
         android:backgroundTint="@color/white"
         android:elevation="0dp"
-        app:cardCornerRadius="13.00dp"
+        app:cardCornerRadius="13dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="13.00dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/ivImageSlider"
-            android:layout_width="wrap_content"
-            android:layout_height="156.00dp"
-            app:iss_auto_cycle="false"
-            app:iss_text_align="CENTER" />
-
-        <TextView
-            android:id="@+id/textviewProductTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="Product Name"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textviewProductQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="500ml"
-            android:textColor="#6F6F6F"
-            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="13dp"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/ivImageSlider"
+                android:layout_width="wrap_content"
+                android:layout_height="156dp"
+                app:iss_auto_cycle="false"
+                app:iss_text_align="CENTER" />
+
+            <TextView
+                android:id="@+id/textviewProductTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Product Name"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textviewProductQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500ml"
+                android:textColor="#6F6F6F"
+                android:textSize="16sp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textviewProductPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="$25"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textviewAdd"
-                    android:layout_width="78.00dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5.20dp"
-                    android:background="@drawable/button_baground"
-                    android:gravity="center"
-                    android:text="Edit"
-                    android:padding="5.20dp"
-                    android:textColor="@color/green"
-                    android:textSize="14.30sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/textviewProductPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$25"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/textviewAdd"
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5.2dp"
+                        android:background="@drawable/button_baground"
+                        android:gravity="center"
+                        android:text="Edit"
+                        android:padding="5.2dp"
+                        android:textColor="@color/green"
+                        android:textSize="14.3sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
