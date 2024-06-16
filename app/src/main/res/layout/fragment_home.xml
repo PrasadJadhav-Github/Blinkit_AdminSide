@@ -73,12 +73,38 @@
         android:id="@+id/recyclerviewProducts"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_margin="6.50dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerviewCategories"
         app:spanCount="2"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerviewCategories">
+
+        <LinearLayout
+            android:layout_width="391dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_view_product_simmer" />
+
+            <include layout="@layout/item_view_product_simmer" />
+
+            <include layout="@layout/item_view_product_simmer" />
+
+            <include layout="@layout/item_view_product_simmer" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

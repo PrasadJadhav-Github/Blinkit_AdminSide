@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getAllTheProducts(category: String?) {
+        binding.shimmerViewContainer.visibility = View.VISIBLE
         lifecycleScope.launch {
             viewMode.fetchAllTheProducts(category).collect{
                 if (it.isEmpty()){
@@ -47,6 +48,9 @@ class HomeFragment : Fragment() {
                 val  adapterProduct = AdapterProduct()
                 binding.recyclerviewProducts.adapter=adapterProduct
                 adapterProduct.differ.submitList(it)
+
+                binding.shimmerViewContainer.visibility = View.GONE
+
             }
         }
     }
