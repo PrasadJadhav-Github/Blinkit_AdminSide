@@ -126,8 +126,8 @@ class HomeFragment : Fragment() {
 
         val units =
             ArrayAdapter(requireContext(),
-            R.layout.show_item_list,
-            Constant.allUnitsOfProduct)
+                R.layout.show_item_list,
+                Constant.allUnitsOfProduct)
 
         val category =
             ArrayAdapter(requireContext(),

@@ -48,20 +48,23 @@ class AdminViewModel: ViewModel() {
     }
 
 
-    fun saveProduct(products: Products){
-        FirebaseDatabase.getInstance().getReference("Admins").child("AllProducts/${products.productRandomId}").setValue(products)
+    fun saveProduct(products: Products) {
+        // Generate a unique ID for each product
+        val productId = UUID.randomUUID().toString()
+        products.productRandomId = productId
+
+        FirebaseDatabase.getInstance().getReference("Admins").child("AllProducts/${productId}").setValue(products)
             .addOnSuccessListener {
-                FirebaseDatabase.getInstance().getReference("Admins").child("ProductCategory/${products.productRandomId}").setValue(products)
+                FirebaseDatabase.getInstance().getReference("Admins").child("ProductCategory/${productId}").setValue(products)
                     .addOnSuccessListener {
-                        FirebaseDatabase.getInstance().getReference("Admins").child("ProductsType/${products.productRandomId}").setValue(products)
+                        FirebaseDatabase.getInstance().getReference("Admins").child("ProductsType/${productId}").setValue(products)
                             .addOnSuccessListener {
-                                _isProductSaved.value=true
+                                _isProductSaved.value = true
                             }
-
                     }
-
             }
     }
+
 
     fun fetchAllTheProducts(category: String?): Flow<List<Products>> = callbackFlow {
         val db= FirebaseDatabase.getInstance().getReference("Admins").child("AllProducts")
